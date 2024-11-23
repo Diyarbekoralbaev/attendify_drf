@@ -32,11 +32,11 @@ SYSTEM_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
     'django_redis',
-    'corsheaders',
     'channels',
 ]
 
@@ -191,3 +191,5 @@ CACHES = {
     }
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
