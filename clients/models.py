@@ -14,7 +14,6 @@ class ClientModel(SharedModel):
     gender = models.CharField(max_length=10, choices=GenderChoices)
     age = models.IntegerField()
     image = models.ImageField(upload_to='clients/')
-    visit_history = models.ManyToManyField('ClientVisitHistoryModel', related_name='related_clients')
 
     def __str__(self):
         return f'{self.first_seen} {self.last_seen} {self.visit_count}'
