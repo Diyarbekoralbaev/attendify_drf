@@ -3,6 +3,8 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+
+from employees.models import EmployeeAttendanceModel
 from .models import ClientModel, ClientVisitHistoryModel
 from datetime import datetime
 import json
@@ -43,7 +45,7 @@ def client_update_handler(sender, instance, created, **kwargs):
                 'datetime': visit.datetime,
                 'device_id': visit.device_id
             }
-            for visit in instance.visit_history.all()
+            for visit in EmployeeAttendanceModel.objects.filter(client=instance).order_by('datetime')
         ]
     }
     send_group_event(event, data)
