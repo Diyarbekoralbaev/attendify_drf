@@ -40,12 +40,12 @@ def client_update_handler(sender, instance, created, **kwargs):
         'gender': instance.gender,
         'age': instance.age,
         'image': instance.image.url,
-        'visit_history': [
+        'visit_histories': [
             {
                 'datetime': visit.datetime,
                 'device_id': visit.device_id
             }
-            for visit in EmployeeAttendanceModel.objects.filter(client=instance).order_by('datetime')
+            for visit in ClientVisitHistoryModel.objects.filter(client=instance).order_by('datetime')
         ]
     }
     send_group_event(event, data)
